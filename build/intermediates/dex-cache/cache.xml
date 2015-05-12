@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Program Files (x86)\Java\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-4109a23005bc2538dbff149cde1101e624bd90d1.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-6dd7fa921a39436d34629c49ed9a05471bfef3ac.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\pre-dexed\debug\classes-54ca6e8f880e20fd198a949b38cfc8cafe50310a.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\pre-dexed\debug\classes-9b786a98b93ecef0d1f0bf643981a06133844a3b.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\pre-dexed\debug\classes-0f3340bd5599f0112dddaaf0a60acd9da681da07.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\libs\internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-c01806028197af2bb7a290e9b32dff258f891ab9.jar" />
+    </item>
+    <item
+        jar="C:\Program Files (x86)\Java\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.0\support-annotations-21.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\pre-dexed\debug\support-annotations-21.0.0-cdc49751ec6f8fa4ca4f2720280669a84b3cc3fe.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\pre-dexed\debug\classes-24b012ebc1aca16ef4b1722e6317e4c93d9e5461.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\pre-dexed\debug\classes-87fe988100105278cfec20f088cd5156f0e2f1de.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\exploded-aar\BasicSamples.libraries\BaseGameUtils\unspecified\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9f0ca99538528916f5d1d461e02610367a463ae8">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\pre-dexed\debug\classes-88fd1416c725fde01d5262617b8cfb7c14c0e605.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\libs\internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-d603df17cc7558e0f5d43929c1db52adcea1c987.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\exploded-aar\BasicSamples.libraries\BaseGameUtils\unspecified\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9f0ca99538528916f5d1d461e02610367a463ae8">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\pre-dexed\debug\classes-8cb435ced1aeae11bd916822c82dbdba365ad71d.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\pre-dexed\debug\classes-0c70a469e67c8e65c9c29e8a2bbe74567fdc8f6c.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\pre-dexed\debug\classes-0f1b9a297b103edbedc1d94196ad3618ae0f2a2a.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\TypeANumber\build\intermediates\pre-dexed\debug\classes-a0b42def22c005bf92ddada9441a648c3b9000c0.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\jokapp\build\intermediates\pre-dexed\debug\classes-5fb1052011e69f414465d57de07e042301ed9fa4.jar" />
+    </item>
+    <item
+        jar="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\exploded-aar\BasicSamples.libraries\BaseGameUtils\unspecified\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9f0ca99538528916f5d1d461e02610367a463ae8">
+        <dex dex="D:\Solutions\Android\android-basic-samples-master\BasicSamples\SkeletonTbmp\build\intermediates\pre-dexed\debug\classes-6a885cc3ecf67f91de1932170f861961cc7affca.jar" />
+    </item>
+
+</items>
