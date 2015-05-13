@@ -10,6 +10,7 @@ public class RoundPlayer {
     private int mSaid;
     private int mTaken;
     private CardBase mPlayedCard;
+    private CardBase[] mCardsOnHand;
 
     public CardBase getPlayedCard() {
         return mPlayedCard;
@@ -35,6 +36,9 @@ public class RoundPlayer {
         this.mSaid = mSaid;
     }
 
+    public CardBase[] getCardsOnHand(){
+        return mCardsOnHand;
+    }
 
 
     public Player getPlayer() {

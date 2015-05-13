@@ -1,15 +1,21 @@
 package game;
 
-import game.cards.CardBase;
-import game.messages.CardPlayerPair;
-
 /**
- * Created by Giorgi on 5/12/2015.
+ * Shared object class, that represents current round.
  */
 public class Round {
 
-   int mRoundNumber;
-   CardBase []mMyCards;
-   RoundPlayer[] mRoundPlayers;
+    private int mRoundNumber;//from 0 to 20
+    //0 means needs atuzva
+    private RoundPlayer[] mRoundPlayers;
+
+    public int getRoundNumber() {
+        return mRoundNumber;
+    }
+
+    public RoundPlayer[] getRoundPlayers() {
+        return mRoundPlayers;
+    }
+
 
 }
