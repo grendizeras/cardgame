@@ -1,14 +1,29 @@
 package game;
 
-import game.messages.MatchMessage;
-
 /**
  * Created by Giorgi on 5/12/2015.
  */
 public class GameLogic {
-    Round mCurrentRound;
+    private boolean mRoundFinished;
 
-    public void processMatchMessage(MatchMessage message){
+    public boolean processMove(Round round, String playerId, int type) {
+        if (type == 0)
+            return processPlay(round, playerId);
+        else {
+            return processSaying(round, playerId);
+        }
+    }
 
+    public boolean isRoundFinished() {
+        return mRoundFinished;
+    }
+
+    private boolean processSaying(Round round, String playerId) {
+
+        return false;
+    }
+
+    private boolean processPlay(Round round, String playerId) {
+        return false;
     }
 }

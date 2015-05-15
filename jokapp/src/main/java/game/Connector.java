@@ -1,17 +1,18 @@
 package game;
 
-import game.messages.MatchMessage;
-
 /**
  * Created by Giorgi on 5/12/2015.
  */
-public interface  Connector {
+public interface Connector {
     /**
      * This should be called by GameMatch, on appropriate Connector object, to notify endpoints or UI about event.
-     *  @param round
+     *
+     * @param round
      */
     void updateMatch(Round round);
+
     void setConnectorCallback(ConnectorCallback callback);
+
     void setConnectorCallback(UIConnectorCallback callback);
 
 
@@ -22,9 +23,10 @@ public interface  Connector {
         void onMatchUpdated(Round round);
     }
 
-    interface UIConnectorCallback{
-        boolean onMove(Round round,ActionType type);
-        enum ActionType{
+    interface UIConnectorCallback {
+        boolean onMove(Round round, ActionType type);
+
+        enum ActionType {
             PLAYED_CARD, SAID_AMOUNT
         }
     }

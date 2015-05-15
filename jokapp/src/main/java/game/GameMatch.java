@@ -37,9 +37,12 @@ public class GameMatch implements Connector.ConnectorCallback, Connector.UIConne
 
     @Override
     public boolean onMove(Round round, ActionType type) {
-        //filter by gameLogic
-        //if(logic passes) notify
-        mOutput.updateMatch(round);//update central round object
+        if(mLogic.processMove(round,mMyId,type.ordinal())){
+            mOutput.updateMatch(round);//update central round object
+            //if(mLogic.isRoundFinished())
+            //add to game history
+            return true;
+        }
         return false;//return result of logic. this should be used to notify ui that something is wring or everything is ok.
     }
 }
