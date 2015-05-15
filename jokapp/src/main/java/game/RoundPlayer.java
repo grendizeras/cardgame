@@ -5,12 +5,26 @@ import game.cards.CardBase;
 /**
  * Created by Giorgi on 5/12/2015.
  */
-public class RoundPlayer {
-    private Player mPlayer;
+public class RoundPlayer implements Cloneable {
+    private final Player mPlayer;
     private int mSaid;
     private int mTaken;
     private CardBase mPlayedCard;
-    private CardBase[] mCardsOnHand;
+    private final CardBase[] mCardsOnHand;
+
+    public RoundPlayer(Player player,CardBase[] cards){
+        mPlayer=player;
+        mCardsOnHand=cards;
+    }
+
+    private RoundPlayer(RoundPlayer source){
+        mPlayer=source.mPlayer;
+        mSaid=source.mSaid;
+        mTaken=source.mTaken;
+        mPlayedCard=source.mPlayedCard;
+        mCardsOnHand=source.mCardsOnHand;
+
+    }
 
     public CardBase getPlayedCard() {
         return mPlayedCard;
@@ -45,11 +59,10 @@ public class RoundPlayer {
         return mPlayer;
     }
 
-    public void setPlayer(Player mPlayer) {
-        this.mPlayer = mPlayer;
+
+
+    @Override
+    protected RoundPlayer clone() throws CloneNotSupportedException {
+        return new RoundPlayer(this);
     }
-
-
-
-
 }

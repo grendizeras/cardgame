@@ -3,9 +3,12 @@ package game;
 /**
  * Created by Giorgi on 5/12/2015.
  */
-public class GameMatch implements Connector.ConnectorCallback {
-    Player[] mPlayers;
+public class GameMatch implements Connector.ConnectorCallback, Connector.UIConnectorCallback {
+    // Player[] mPlayers;
+    String mMyId;
     GameLogic mLogic;
+    Round mCurrentRound;
+    //GameHistory
 
     Connector mInput;
     Connector mOutput;
@@ -17,32 +20,26 @@ public class GameMatch implements Connector.ConnectorCallback {
     public GameMatch(Connector input, Connector output) {
         mInput = input;
         mOutput = output;
-        mInput.setConnectorCallback(this);
-        mOutput.setConnectorCallback(this);
+        mInput.setConnectorCallback((Connector.ConnectorCallback) this);
+        mOutput.setConnectorCallback((Connector.UIConnectorCallback) this);
+        mLogic = new GameLogic();
+    }
+
+    public Round getRound() throws CloneNotSupportedException {
+        return mCurrentRound.clone();
     }
 
     @Override
-    public void onMatchUpdated(Round round, boolean isInput) {
-        processMessage(round, isInput);
+    public void onMatchUpdated(Round round) {
+        mCurrentRound = round;
+        mInput.updateMatch(round);//Update ui
     }
 
-
-    /**
-     * Main entry for processing round object
-     *
-     * @param round
-     * @param isInput
-     */
-    private void processMessage(Round round, boolean isInput) {
-
-        if (isInput) {
-            //filter by gameLogic
-            mOutput.updateMatch(round);//update central round object
-        } else {
-            mInput.updateMatch(round);//Update ui
-        }
-
+    @Override
+    public boolean onMove(Round round, ActionType type) {
+        //filter by gameLogic
+        //if(logic passes) notify
+        mOutput.updateMatch(round);//update central round object
+        return false;//return result of logic. this should be used to notify ui that something is wring or everything is ok.
     }
-    //HistoryTable
-
 }

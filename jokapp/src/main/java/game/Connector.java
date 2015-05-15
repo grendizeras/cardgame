@@ -12,16 +12,21 @@ public interface  Connector {
      */
     void updateMatch(Round round);
     void setConnectorCallback(ConnectorCallback callback);
+    void setConnectorCallback(UIConnectorCallback callback);
 
 
     /**
      * Callback interface to notify GameMatch about events in match.
      */
     interface ConnectorCallback {
+        void onMatchUpdated(Round round);
+    }
 
-        void onMatchUpdated(Round round,boolean isInput);
-
-
+    interface UIConnectorCallback{
+        boolean onMove(Round round,ActionType type);
+        enum ActionType{
+            PLAYED_CARD, SAID_AMOUNT
+        }
     }
 
 }
