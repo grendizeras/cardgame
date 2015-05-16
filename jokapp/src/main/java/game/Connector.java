@@ -24,11 +24,9 @@ public interface Connector {
     }
 
     interface UIConnectorCallback {
-        boolean onMove(Round round, ActionType type);
+        boolean onMove(Round round);
 
-        enum ActionType {
-            PLAYED_CARD, SAID_AMOUNT
-        }
+
     }
 
 }

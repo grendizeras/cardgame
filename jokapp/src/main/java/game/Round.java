@@ -9,6 +9,8 @@ public class Round implements Cloneable {
     //0 means needs atuzva
     private final RoundPlayer[] mRoundPlayers;
 
+    private RoundStatus mStatus=RoundStatus.SAYING;
+
     public Round(RoundPlayer[] players) {
         mRoundPlayers = players;
     }
@@ -69,8 +71,21 @@ public class Round implements Cloneable {
         return mRoundPlayers;
     }
 
+    public RoundStatus getStatus(){
+        return mStatus;
+    }
+
+    void setStatus(RoundStatus status){//from containing  package
+         mStatus=status;
+    }
+
     @Override
     protected Round clone() throws CloneNotSupportedException {
         return new Round(this);
+    }
+
+
+    public enum RoundStatus{
+        SAYING,PLAYING,FINISHED
     }
 }
