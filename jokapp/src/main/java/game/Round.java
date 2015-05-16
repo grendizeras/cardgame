@@ -24,6 +24,17 @@ public class Round implements Cloneable {
 
     }
 
+    public boolean isPlayerFirst(String id){
+        try {
+            if (mRoundPlayers != null) {
+                    return mRoundPlayers[0].getPlayer().getId() == id;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public RoundPlayer findPlayer(String id) {
 
         try {

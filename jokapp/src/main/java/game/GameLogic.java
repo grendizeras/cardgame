@@ -16,7 +16,6 @@ public class GameLogic {
 
 
     private boolean processSaying(Round round, String playerId) {
-
         return false;
     }
 
