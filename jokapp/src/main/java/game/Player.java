@@ -7,6 +7,11 @@ public class Player {
     private String mId;
     private String mName;
 
+    public Player(String id,String name){
+    mId=id;
+    mName=name;
+    }
+
     public String getId() {
         return mId;
     }

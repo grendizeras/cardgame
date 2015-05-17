@@ -7,29 +7,34 @@ import java.util.Random;
  * Created by Giorgi on 5/15/2015.
  */
 public class CardDeck {
-    private final CardBase mCards[];
-    int suits;
-    int faces;
-    int length;
+    private static CardBase mCards[];
+    private static int suits;
+    private static int faces;
+    private static int length;
 
-    public CardDeck() {
+    public static CardBase[] initDeck() {
+
         suits = Suit.values().length;
         faces = Face.values().length;
         length = (suits - 1) * faces + 2;
-        mCards = new CardBase[length];//2 jokers
+        CardBase cards[]=new CardBase[length];
         for (int i = 0; i < suits - 1; i++) {
             Suit suit = Suit.valueOf(i);
             for (int k = 0; k < faces; k++) {
                 Face face = Face.valueOf(k);
-                mCards[k + i * faces] = new Card(suit, face);
+                cards[k + i * faces] = new Card(suit, face);
             }
         }
-        mCards[length - 2] = new JokerCard();
-        mCards[length - 1] = new JokerCard();
-
+        cards[length - 2] = new JokerCard();
+        cards[length - 1] = new JokerCard();
+        return cards;
     }
 
-    public CardBase[] shuffle() {
+    static {
+        mCards=initDeck();
+    }
+
+    public static CardBase[] shuffle() {
         ArrayList<Integer> shuffledPos = new ArrayList<>();
         CardBase[] shuffledCards = new CardBase[length];
         Random random = new Random();

@@ -10,19 +10,19 @@ public class RoundPlayer implements Cloneable {
     private int mSaid;
     private int mTaken;
     private CardBase mPlayedCard;
-    private final CardBase[] mCardsOnHand;
+    private  CardBase[] mCardsOnHand;
 
-    public RoundPlayer(Player player,CardBase[] cards){
-        mPlayer=player;
-        mCardsOnHand=cards;
+    public RoundPlayer(Player player) {
+        mPlayer = player;
+
     }
 
-    private RoundPlayer(RoundPlayer source){
-        mPlayer=source.mPlayer;
-        mSaid=source.mSaid;
-        mTaken=source.mTaken;
-        mPlayedCard=source.mPlayedCard;
-        mCardsOnHand=source.mCardsOnHand;
+    private RoundPlayer(RoundPlayer source) {
+        mPlayer = source.mPlayer;
+        mSaid = source.mSaid;
+        mTaken = source.mTaken;
+        mPlayedCard = source.mPlayedCard;
+        mCardsOnHand = source.mCardsOnHand;
 
     }
 
@@ -50,15 +50,17 @@ public class RoundPlayer implements Cloneable {
         this.mSaid = mSaid;
     }
 
-    public CardBase[] getCardsOnHand(){
+    public CardBase[] getCardsOnHand() {
         return mCardsOnHand;
     }
 
+    public void setCardsOnHand(CardBase[] cards) {
+     this.mCardsOnHand=cards;
+    }
 
     public Player getPlayer() {
         return mPlayer;
     }
-
 
 
     @Override

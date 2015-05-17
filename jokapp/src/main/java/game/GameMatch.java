@@ -1,51 +1,77 @@
 package game;
 
+import game.cards.CardBase;
+
 /**
  * Created by Giorgi on 5/12/2015.
  */
-public class GameMatch implements Connector.ConnectorCallback, Connector.UIConnectorCallback {
-    // Player[] mPlayers;
-    String mMyId;
-    GameLogic mLogic;
-    Round mCurrentRound;
+public class GameMatch implements Connector.ConnectorCallback {
+    private Player[] mPlayers;
+    private Round mCurrentRound;
+    private Round mTempRound;
+    private static boolean mIsMyTurn;
     //GameHistory
 
-    Connector mInput;
+    UIConnectorPresenter mUIpresenter;
     Connector mOutput;
 
     /**
-     * @param input  - the one that represents events to/from UI
-     * @param output - represents out world connection
+     * @param uiPresenter - the one that represents events to/from UI
+     * @param output      - represents out world connection
      */
-    public GameMatch(Connector input, Connector output) {
-        mInput = input;
+    public GameMatch(UIConnectorPresenter uiPresenter, Connector output) {
+        mUIpresenter = uiPresenter;
         mOutput = output;
-        mInput.setConnectorCallback((Connector.ConnectorCallback) this);
-        mOutput.setConnectorCallback((Connector.UIConnectorCallback) this);
-        mLogic = new GameLogic();
+        mOutput.setConnectorCallback((Connector.ConnectorCallback) this);
     }
 
     public Round getRound() throws CloneNotSupportedException {
         return mCurrentRound.clone();
     }
 
+    public static boolean isMyTurn() {
+        return mIsMyTurn;
+    }
+
     @Override
-    public void onMatchUpdated(Round round) {
+    public void onMatchUpdated(Round round, Object extraParam) {
+        mIsMyTurn = (boolean) extraParam;
         mCurrentRound = round;
-        mInput.updateMatch(round);//Update ui
+        mUIpresenter.getUIConnector().onMatchUpdated(round,null);//Update ui
     }
 
     @Override
-    public boolean onMove(Round round) {
-        if (mLogic.processMove(round, mMyId)) {
-            mOutput.updateMatch(round);//update central round object
-            mCurrentRound=round;
-            if(round.getStatus()== Round.RoundStatus.FINISHED){
-                //add to game history
-            }
-
-            return true;
-        }
-        return false;//return result of logic. this should be used to notify ui that something is wring or everything is ok.
+    public void onPlayerJoined(Player player) {
+       mUIpresenter.getUIConnector().onPlayerJoined(player);
     }
+
+
+    public boolean makeMove(Object object, int type) {
+        mTempRound = mCurrentRound;
+        if (type == 0) {//say
+            return mTempRound.say((int) object);
+        }
+        else{
+            return mTempRound.play((CardBase)object);
+        }
+    }
+
+    public void commit(){
+        mCurrentRound=mTempRound;
+        mTempRound=null;
+        mOutput.updateMatch(mCurrentRound);
+    }
+
+
+    public boolean startMatch(){
+        return false;
+    }
+
+    public boolean joinPlayer(Player player){
+        return false;
+    }
+
+
+
+
 }

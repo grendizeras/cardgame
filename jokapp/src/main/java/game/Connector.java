@@ -13,20 +13,15 @@ public interface Connector {
 
     void setConnectorCallback(ConnectorCallback callback);
 
-    void setConnectorCallback(UIConnectorCallback callback);
-
 
     /**
      * Callback interface to notify GameMatch about events in match.
      */
     interface ConnectorCallback {
-        void onMatchUpdated(Round round);
+        void onMatchUpdated(Round round,Object extraParam);
+        void onPlayerJoined(Player player);
     }
 
-    interface UIConnectorCallback {
-        boolean onMove(Round round);
 
-
-    }
 
 }

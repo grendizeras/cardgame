@@ -14,4 +14,10 @@ public abstract class CardBase {
     public Suit getSuit(){
         return mSuit;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        CardBase card=(CardBase)o;
+        return card.getSuit()==this.getSuit();
+    }
 }

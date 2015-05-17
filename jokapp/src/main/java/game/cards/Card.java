@@ -14,4 +14,14 @@ public class Card extends CardBase {
     public Face getFace() {
         return mFace;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        CardBase card=(CardBase)o;
+        if(card.getSuit()!=Suit.JOKER){
+            return super.equals(o)&&((Card)card).getFace()==this.getFace();
+        }
+        return false;
+
+    }
 }

@@ -6,20 +6,12 @@ package game;
 public class GameLogic {
 
 
-    public boolean processMove(Round round, String playerId) {
-        if (round.getStatus() == Round.RoundStatus.SAYING) {
-            return processSaying(round, playerId);
-        } else  {
-            return processPlay(round, playerId);
-        }
-    }
-
-
-    private boolean processSaying(Round round, String playerId) {
+    public static boolean processSay(Round round) {
         return false;
     }
 
-    private boolean processPlay(Round round, String playerId) {
+
+    public static boolean processPlay(Round round) {
         return false;
     }
 }
