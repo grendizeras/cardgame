@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import game.cards.Card;
 import game.cards.CardBase;
@@ -14,7 +15,7 @@ import game.cards.Suit;
  */
 public class Round implements Cloneable {
 
-    private int mRoundNumber;//from 0 to 22
+    private int mRoundNumber;//from 0 to 24
     //0 means needs atuzva
     private ArrayList<RoundPlayer> mRoundPlayers;
     private RoundPlayer mCurrentPlayer;
@@ -32,10 +33,16 @@ public class Round implements Cloneable {
         initRound();
     }
 
+    public RoundPlayer getMe() {
+        if (mRoundPlayers != null)
+            return findPlayer(GameMatch.getMyId());
+        throw new IllegalStateException("My id is not initialized");
+    }
 
     //atuzva
     public void initRound() {
         if (GameMatch.isMyTurn()) {
+            mCurrentPlayer = getMe();//init is always done by one player- initiator
             CardBase[] cards = CardDeck.shuffle();
             setPlayerCards(cards);
             detectFirstToPlayAfterAtuzva();
@@ -63,22 +70,24 @@ public class Round implements Cloneable {
                 }
             }
         }
+
     }
 
-    public void startRound() {
+    public void startRound() {//kartebis darigeba da gagzavna
         if (GameMatch.isMyTurn()) {
             mStatus = RoundStatus.SAYING;
             mRoundNumber++;
             CardBase[] cards = CardDeck.shuffle();
             setPlayerCards(cards);
-
+            mCurrentPlayer = mRoundPlayers.get(0);//pirveli motamashidan dacyeba.
+            //anu svla gadava pirvel motamasheze, romelmac unda acxados
         }
     }
 
     public int getCardCount() {
         int count = 0;
         if (mRoundNumber > 8) {
-            if ( mRoundNumber <= 12 ||(mRoundNumber>20&&mRoundNumber<=24))
+            if (mRoundNumber <= 12 || (mRoundNumber > 20 && mRoundNumber <= 24))
                 count = 9;
             else count = 21 - mRoundNumber;
         } else {
@@ -110,8 +119,18 @@ public class Round implements Cloneable {
             return false;
         }
         //
-        mCurrentPlayer.setSaid(amount);
+        getMe().setSaid(amount);
+        shiftPlayers();
         return GameLogic.processSay(this);
+
+    }
+
+    public void shiftPlayers() {
+        ArrayList<RoundPlayer> shifted = new ArrayList<>();
+        for (int i = 0; i < mRoundPlayers.size(); i++) {
+            shifted.add( mRoundPlayers.get((i + 1) % 4));
+        }
+        mRoundPlayers = shifted;
     }
 
     public boolean play(CardBase card) {
@@ -136,17 +155,17 @@ public class Round implements Cloneable {
 
     public RoundPlayer findPlayer(String id) {
 
-        try {
+      /*  try {*/
             if (mRoundPlayers != null) {
                 for (int i = 0; i < mRoundPlayers.size(); i++) {
                     if (mRoundPlayers.get(i).getPlayer().getId() == id)
-                        return mRoundPlayers.get(i).clone();
+                        return mRoundPlayers.get(i)/*.clone()*/;
                 }
 
             }
-        } catch (CloneNotSupportedException e) {
+       /* } catch (CloneNotSupportedException e) {
             e.printStackTrace();
-        }
+        }*/
         return null;
     }
 
@@ -177,7 +196,7 @@ public class Round implements Cloneable {
     }
 
     public RoundPlayer getCurrentPlayer() throws CloneNotSupportedException {
-        return mCurrentPlayer.clone();
+        return mCurrentPlayer/*.clone()*/;
     }
 
     public int getRoundNumber() {

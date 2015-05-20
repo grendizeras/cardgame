@@ -67,4 +67,9 @@ public class RoundPlayer implements Cloneable {
     protected RoundPlayer clone() throws CloneNotSupportedException {
         return new RoundPlayer(this);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.mPlayer.getId()==((RoundPlayer)o).mPlayer.getId();
+    }
 }

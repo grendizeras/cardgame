@@ -4,8 +4,6 @@ import android.test.suitebuilder.annotation.MediumTest;
 
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
-
 import game.Player;
 import game.Round;
 import game.RoundPlayer;
@@ -22,7 +20,7 @@ public class RoundTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        players=new Player[4];
+        players = new Player[4];
         Player player = new Player("00000", null);
         players[0] = player;
         player = new Player("00001", null);
@@ -36,26 +34,43 @@ public class RoundTest extends TestCase {
     }
 
     @MediumTest
-    public void testSetPlayerCardsInitial() {
-        CardBase[] cards = CardDeck.initDeck();
-        round.setPlayerCards(cards);
-        RoundPlayer pl = round.getRoundPlayers().get(0);
-        for (int i = 0; i < 9; i++) {
-            assertEquals(pl.getCardsOnHand()[i], cards[i]);
+    public void testInitialRound() {
+        for (int i = 0; i < 4; i++) {
+            RoundPlayer p = round.getRoundPlayers().get(i);
+            assertEquals(9, p.getCardsOnHand().length);
         }
-
-        pl = round.getRoundPlayers().get(2);
-        for (int i = 19; i < 27; i++) {
-            assertEquals(pl.getCardsOnHand()[i%9], cards[i]);
-        }
+        assertEquals(0, round.getRoundNumber());
+        assertEquals(round.getStatus(), Round.RoundStatus.ATUZVA);
     }
+
+    @MediumTest
+    public void testStartRound() throws Exception {
+        round.startRound();
+        for (int i = 0; i < 4; i++) {
+            RoundPlayer p = round.getRoundPlayers().get(i);
+            assertEquals(1, p.getCardsOnHand().length);
+        }
+        assertEquals(1, round.getRoundNumber());
+        assertEquals(round.getStatus(), Round.RoundStatus.SAYING);
+        assertNotNull(round.getCurrentPlayer());
+        assertEquals(round.getRoundPlayers().get(0), round.getCurrentPlayer());
+
+
+    }
+
+    @MediumTest
+    public void testRoundSay() {
+        round.say(4);
+        assertEquals(4, round.getMe().getSaid());
+    }
+
 
     @MediumTest
     public void testSetPlayerCards() {
         CardBase[] cards = CardDeck.initDeck();
         round.setRoundNumber(5);
         round.setPlayerCards(cards);
-        assertEquals(5,round.getRoundPlayers().get(0).getCardsOnHand().length);
+        assertEquals(5, round.getRoundPlayers().get(0).getCardsOnHand().length);
     }
 
     @MediumTest
