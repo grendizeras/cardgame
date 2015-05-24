@@ -1,6 +1,8 @@
 package game;
 
+import game.cards.Card;
 import game.cards.CardBase;
+import game.cards.Suit;
 
 /**
  * Created by Giorgi on 5/12/2015.
@@ -24,6 +26,33 @@ public class RoundPlayer implements Cloneable {
         mPlayedCard = source.mPlayedCard;
         mCardsOnHand = source.mCardsOnHand;
 
+    }
+
+    public boolean hasSuit(Suit suit){
+        if(mCardsOnHand!=null){
+            for(CardBase card:mCardsOnHand){
+                if(card.getSuit()==suit)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCardBiggestOfSuit(CardBase card){
+        if(card.getSuit()==Suit.JOKER){
+            return true;
+        }
+        Card mCard=(Card)card;
+        for(CardBase kard:mCardsOnHand){
+            if(kard.getSuit()==Suit.JOKER)
+                continue;
+            Card cCard=(Card)kard;
+            if(cCard.getSuit()==mCard.getSuit()){
+                if(cCard.getFace().getRank()>mCard.getFace().getRank())
+                    return false;
+            }
+        }
+        return true;
     }
 
     public CardBase getPlayedCard() {

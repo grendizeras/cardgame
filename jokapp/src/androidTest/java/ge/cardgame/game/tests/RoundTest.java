@@ -60,6 +60,7 @@ public class RoundTest extends TestCase {
 
     @MediumTest
     public void testRoundSay() {
+        round.setRoundNumber(6);
         round.say(4);
         assertEquals(4, round.getMe().getSaid());
     }
@@ -71,6 +72,7 @@ public class RoundTest extends TestCase {
         round.setRoundNumber(5);
         round.setPlayerCards(cards);
         assertEquals(5, round.getRoundPlayers().get(0).getCardsOnHand().length);
+        assertEquals(cards[4*round.getCardCount()],round.getKozir());
     }
 
     @MediumTest
@@ -108,6 +110,13 @@ public class RoundTest extends TestCase {
         count = round.getCardCount();
         assertEquals(9, count);
 
+    }
+
+
+
+    public void reInitRound(){
+        round=new Round(players);
+        round.resetPlayers();
     }
 }
 
