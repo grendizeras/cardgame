@@ -1,6 +1,7 @@
 package ge.cardgame.jokapp.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -65,7 +66,8 @@ public class MainActivity extends BaseActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         if(position==1){
-            mMatchHelper.createMatch();
+            Intent intent=new Intent(this,MatchActivity.class);
+            startActivity(intent);
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))

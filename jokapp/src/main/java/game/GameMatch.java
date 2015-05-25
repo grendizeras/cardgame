@@ -10,7 +10,7 @@ public class GameMatch implements Connector.ConnectorCallback {
     private Round mCurrentRound;
     private Round mTempRound;
     private static boolean mIsMyTurn = true;
-    private static String mMyId="00001";
+    public static String mMyId="00001";
 
     //GameHistory
 

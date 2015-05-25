@@ -113,10 +113,9 @@ public class RoundTest extends TestCase {
     }
 
 
-
     public void reInitRound(){
         round=new Round(players);
-        round.resetPlayers();
+        round.reset();
     }
 }
 

@@ -24,4 +24,10 @@ public class Card extends CardBase {
         return false;
 
     }
+
+
+    @Override
+    public String toString() {
+        return super.toString()+" "+mFace.toString();
+    }
 }

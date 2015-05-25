@@ -20,4 +20,9 @@ public abstract class CardBase {
         CardBase card=(CardBase)o;
         return card.getSuit()==this.getSuit();
     }
+
+    @Override
+    public String toString() {
+        return mSuit.toString();
+    }
 }

@@ -19,7 +19,7 @@ public class Round implements Cloneable {
     //0 means needs atuzva
     private CardBase mKozir;
     private ArrayList<RoundPlayer> mRoundPlayers;
-    private RoundPlayer mCurrentPlayer;
+    private RoundPlayer mCurrentPlayer;//vin tamashobs exla
     private RoundStatus mStatus = RoundStatus.ATUZVA;
     private RoundPlayer mStartingPlayer;//the one who start in the round (ex: someone took cards and mast start)
 
@@ -114,6 +114,9 @@ public class Round implements Cloneable {
     private Round(Round source) throws CloneNotSupportedException {
         mRoundNumber = source.mRoundNumber;
         mRoundPlayers = new ArrayList<>(source.mRoundPlayers);
+        mCurrentPlayer = source.mCurrentPlayer;
+        mStartingPlayer = source.mStartingPlayer;
+        mStatus = source.mStatus;
         for (int i = 0; i < mRoundPlayers.size(); i++) {
             mRoundPlayers.set(i, source.mRoundPlayers.get(i).clone());
         }
@@ -126,7 +129,7 @@ public class Round implements Cloneable {
         }
         //
 
-        if (amount > mRoundNumber)
+        if (amount > getCardCount())
             return false;
         //if is last player then check sum of all previous
         int index = getPlayerIndex(getMe());
@@ -136,7 +139,7 @@ public class Round implements Cloneable {
                 sum += mRoundPlayers.get(i).getSaid();
             }
 // if sum of all is rouund number, than is unable to say it
-            if (sum + amount == mRoundNumber) {
+            if (sum + amount == getCardCount()) {
                 return false;
             }
         }
@@ -177,20 +180,25 @@ public class Round implements Cloneable {
         //
         if (getPlayerIndex(getMe()) == 0) {// first player, no validation needed
             getMe().setPlayedCard(card);
-            return true;
+            success= true;
         } else {
 
             success = validateCard(card);
 
-            if (success) {
-                mCurrentPlayer.setPlayedCard(card);
-                if (getPlayerIndex(getMe()) == 3) {
-                    RoundPlayer player = findWinner();
-                    player.setTaken(player.getTaken() + 1);
-                    mStartingPlayer = player;
-                }
-            }
 
+
+
+
+
+        }
+        if(success){
+            mCurrentPlayer.setPlayedCard(card);
+            mCurrentPlayer=getNextPlayer();
+            if (getPlayerIndex(getMe()) == 3) {
+                RoundPlayer player = findWinner();
+                player.setTaken(player.getTaken() + 1);
+                mStartingPlayer = player;
+            }
         }
         return success;
     }
@@ -211,12 +219,12 @@ public class Round implements Cloneable {
     }
 
 
-    public Round nextRound(){
+    public Round nextRound() {
         reset();
         mRoundNumber++;
         shiftPlayers();
-        mStatus=RoundStatus.SAYING;
-        mCurrentPlayer=mStartingPlayer=mRoundPlayers.get(0);
+        mStatus = RoundStatus.SAYING;
+        mCurrentPlayer = mStartingPlayer = mRoundPlayers.get(0);
         return this;
     }
 
@@ -377,22 +385,30 @@ public class Round implements Cloneable {
         return mKozir;
     }
 
+    public void setKozir(CardBase base) {
+        mKozir = base;
+    }
+
     void setStatus(RoundStatus status) {//from containing  package
         mStatus = status;
     }
 
-    public void reset(){
-        for (RoundPlayer player :mRoundPlayers){
+    public RoundPlayer getStartingPlayer() {
+        return mStartingPlayer;
+    }
+
+    public void reset() {
+        for (RoundPlayer player : mRoundPlayers) {
             player.setSaid(0);
             player.setTaken(0);
             player.setCardsOnHand(null);
             player.setPlayedCard(null);
         }
-        mKozir=null;
+        mKozir = null;
     }
 
     @Override
-    protected Round clone() throws CloneNotSupportedException {
+    public Round clone() throws CloneNotSupportedException {
         return new Round(this);
     }
 
