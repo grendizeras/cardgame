@@ -1,9 +1,11 @@
 package game.cards;
 
+import java.io.Serializable;
+
 /**
  * Created by Giorgi on 5/12/2015.
  */
-public class JokerCard extends CardBase {
+public class JokerCard extends CardBase implements Serializable {
 
     private boolean mJoker;
     private Suit mSuit;

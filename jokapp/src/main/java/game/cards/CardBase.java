@@ -1,9 +1,11 @@
 package game.cards;
 
+import java.io.Serializable;
+
 /**
  * Created by Giorgi on 5/12/2015.
  */
-public abstract class CardBase {
+public abstract class CardBase implements Serializable {
     private Suit mSuit;
 
     public CardBase(Suit suit) {

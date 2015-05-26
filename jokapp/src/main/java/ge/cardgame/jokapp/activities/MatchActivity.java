@@ -4,8 +4,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
+import game.cards.Card;
+import game.cards.Face;
+import game.cards.JokerCard;
+import game.cards.Suit;
 import ge.cardgame.jokapp.R;
+import ge.cardgame.jokapp.controls.CardButton;
 
 public class MatchActivity extends ActionBarActivity {
 
@@ -13,6 +19,15 @@ public class MatchActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match);
+        LinearLayout ll_my_cards=((LinearLayout) findViewById(R.id.ll_my_cards));
+
+        ll_my_cards.addView(new CardButton(this,new Card(Suit.CLUBS, Face.ACE)));
+        ll_my_cards.addView(new CardButton(this, new Card(Suit.CLUBS, Face.KING)));
+        ll_my_cards.addView(new CardButton(this, new Card(Suit.HEARTS, Face.KING)));
+        ll_my_cards.addView(new CardButton(this,new Card(Suit.DIAMONDS, Face.SIX)));
+        ll_my_cards.addView(new CardButton(this,new Card(Suit.SPADES, Face.TEN)));
+        ll_my_cards.addView(new CardButton(this,new Card(Suit.DIAMONDS, Face.NINE)));
+        ll_my_cards.addView(new CardButton(this,new JokerCard()));
     }
 
     @Override

@@ -1,9 +1,11 @@
 package game.cards;
 
+import java.io.Serializable;
+
 /**
  * Created by Giorgi on 5/12/2015.
  */
-public class Card extends CardBase {
+public class Card extends CardBase implements Serializable {
     private Face mFace;
 
     public Card(Suit suit, Face face) {
@@ -28,6 +30,6 @@ public class Card extends CardBase {
 
     @Override
     public String toString() {
-        return super.toString()+" "+mFace.toString();
+        return super.toString()+"_"+mFace.toString();
     }
 }

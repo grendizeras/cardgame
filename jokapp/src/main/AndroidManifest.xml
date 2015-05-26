@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".activities.MatchActivity"
-            android:label="@string/title_activity_match" >
+            android:label="@string/title_activity_match"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
