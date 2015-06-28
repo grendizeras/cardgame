@@ -12,7 +12,7 @@ public class RoundPlayer implements Cloneable {
     private int mSaid;
     private int mTaken;
     private CardBase mPlayedCard;
-    private  CardBase[] mCardsOnHand;
+    private CardBase[] mCardsOnHand;
 
     public RoundPlayer(Player player) {
         mPlayer = player;
@@ -28,27 +28,27 @@ public class RoundPlayer implements Cloneable {
 
     }
 
-    public boolean hasSuit(Suit suit){
-        if(mCardsOnHand!=null){
-            for(CardBase card:mCardsOnHand){
-                if(card.getSuit()==suit)
+    public boolean hasSuit(Suit suit) {
+        if (mCardsOnHand != null) {
+            for (CardBase card : mCardsOnHand) {
+                if (card.getSuit() == suit)
                     return true;
             }
         }
         return false;
     }
 
-    public boolean isCardBiggestOfSuit(CardBase card){
-        if(card.getSuit()==Suit.JOKER){
+    public boolean isCardBiggestOfSuit(CardBase card) {
+        if (card.getSuit() == Suit.JOKER) {
             return true;
         }
-        Card mCard=(Card)card;
-        for(CardBase kard:mCardsOnHand){
-            if(kard.getSuit()==Suit.JOKER)
+        Card mCard = (Card) card;
+        for (CardBase kard : mCardsOnHand) {
+            if (kard.getSuit() == Suit.JOKER)
                 continue;
-            Card cCard=(Card)kard;
-            if(cCard.getSuit()==mCard.getSuit()){
-                if(cCard.getFace().getRank()>mCard.getFace().getRank())
+            Card cCard = (Card) kard;
+            if (cCard.getSuit() == mCard.getSuit()) {
+                if (cCard.getFace().getRank() > mCard.getFace().getRank())
                     return false;
             }
         }
@@ -59,8 +59,10 @@ public class RoundPlayer implements Cloneable {
         return mPlayedCard;
     }
 
-    public void setPlayedCard(CardBase mPlayedCard) {
-        this.mPlayedCard = mPlayedCard;
+    public void setPlayedCard(CardBase playedCard) {
+        this.mPlayedCard = playedCard;
+        if (playedCard != null)
+            removeCard(playedCard);
     }
 
     public int getTaken() {
@@ -84,13 +86,29 @@ public class RoundPlayer implements Cloneable {
     }
 
     public void setCardsOnHand(CardBase[] cards) {
-     this.mCardsOnHand=cards;
+        this.mCardsOnHand = cards;
     }
 
     public Player getPlayer() {
         return mPlayer;
     }
 
+
+    private void removeCard(CardBase card) {
+
+        CardBase[] cards = new CardBase[mCardsOnHand.length - 1];
+        int k = 0;
+        for (int i = 0; i < mCardsOnHand.length; i++) {
+
+            if (mCardsOnHand[i].equals(card))
+                continue;
+
+            cards[k] = mCardsOnHand[i];
+            k++;
+        }
+        mCardsOnHand = cards;
+
+    }
 
     @Override
     protected RoundPlayer clone() throws CloneNotSupportedException {
@@ -99,6 +117,6 @@ public class RoundPlayer implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        return this.mPlayer.getId()==((RoundPlayer)o).mPlayer.getId();
+        return this.mPlayer.getId() == ((RoundPlayer) o).mPlayer.getId();
     }
 }

@@ -8,6 +8,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ge.cardgame.jokapp.activities.MatchActivity">
+    <ScrollView
+        android:layout_width="200dp"
+        android:layout_height="200dp" android:layout_alignParentRight="true">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_alignParentRight="true" android:id="@+id/log"/>
+    </ScrollView>
+
 
     <FrameLayout
         android:id="@+id/fl_cards_on_table"
@@ -17,9 +25,10 @@
 
 
     <HorizontalScrollView
+        android:id="@+id/hsv_card_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_below="@id/fl_cards_on_table">
 
         <LinearLayout
             android:id="@+id/ll_my_cards"
@@ -28,4 +37,10 @@
             android:gravity="center"
             android:orientation="horizontal"></LinearLayout>
     </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_below="@id/hsv_card_scroll" android:layout_centerHorizontal="true" android:text="name"></TextView>
 </RelativeLayout>

@@ -22,6 +22,7 @@ public class Round implements Cloneable {
     private RoundPlayer mCurrentPlayer;//vin tamashobs exla
     private RoundStatus mStatus = RoundStatus.ATUZVA;
     private RoundPlayer mStartingPlayer;//the one who start in the round (ex: someone took cards and mast start)
+    private int mPlayedHands;//hands played in 1 round(means if we have 3 cards on hand, there will be 3 hand played)
 
     public Round() {
     }
@@ -142,6 +143,9 @@ public class Round implements Cloneable {
             if (sum + amount == getCardCount()) {
                 return false;
             }
+
+            //if last player to say, then change status to
+            mStatus = RoundStatus.PLAYING;
         }
         getMe().setSaid(amount);
         mCurrentPlayer = getNextPlayer();
@@ -178,26 +182,30 @@ public class Round implements Cloneable {
             return false;
         }
         //
-        if (getPlayerIndex(getMe()) == 0) {// first player, no validation needed
+        if (getPlayerIndex(mCurrentPlayer) == 0) {// first player, no validation needed
             getMe().setPlayedCard(card);
-            success= true;
+            success = true;
         } else {
 
             success = validateCard(card);
-
-
-
-
+            if(success)
+                mCurrentPlayer.setPlayedCard(card);
 
 
         }
-        if(success){
-            mCurrentPlayer.setPlayedCard(card);
-            mCurrentPlayer=getNextPlayer();
+        if (success) {
+            mCurrentPlayer = getNextPlayer();
+
             if (getPlayerIndex(getMe()) == 3) {
                 RoundPlayer player = findWinner();
+
                 player.setTaken(player.getTaken() + 1);
                 mStartingPlayer = player;
+
+                mPlayedHands++;
+                if (mPlayedHands == getCardCount()) {
+                    nextRound();
+                }
             }
         }
         return success;
@@ -220,11 +228,14 @@ public class Round implements Cloneable {
 
 
     public Round nextRound() {
+
         reset();
-        mRoundNumber++;
+        //mRoundNumber++;
         shiftPlayers();
+        mPlayedHands=0;
         mStatus = RoundStatus.SAYING;
         mCurrentPlayer = mStartingPlayer = mRoundPlayers.get(0);
+        startRound();
         return this;
     }
 
@@ -278,10 +289,10 @@ public class Round implements Cloneable {
                 return true;
             } else {//if not joker then if joker says take, possible cards are kozir suit and said suit
 
-                if (getMe().hasSuit(mKozir.getSuit()) || getMe().hasSuit(jCard.getSaidSuit())) {//tu me maqvs es cvetebi
+                if (mCurrentPlayer.hasSuit(mKozir.getSuit()) || mCurrentPlayer.hasSuit(jCard.getSaidSuit())) {//tu me maqvs es cvetebi
                     if (card.getSuit() == mKozir.getSuit() || card.getSuit() == jCard.getSaidSuit()) {
                         if (jCard.isMustTakeOrGive()) {//true=vishe
-                            if (getMe().isCardBiggestOfSuit(card)) {
+                            if (mCurrentPlayer.isCardBiggestOfSuit(card)) {
 //anu jokerma acxada vishe, me vamocmeb rom udidesi am cvetis vitamasho
                                 return true;
                             }
@@ -300,7 +311,7 @@ public class Round implements Cloneable {
             if (card.getSuit() == Suit.JOKER)
                 return true;
             else {
-                if (getMe().hasSuit(mKozir.getSuit()) || getMe().hasSuit(firstCard.getSuit())) {//tu me maqvs es cvetebi
+                if (mCurrentPlayer.hasSuit(mKozir.getSuit()) || mCurrentPlayer.hasSuit(firstCard.getSuit())) {//tu me maqvs es cvetebi
                     if (card.getSuit() == firstCard.getSuit() || card.getSuit() == mKozir.getSuit()) {
                         return true;
                     }

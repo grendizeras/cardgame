@@ -16,12 +16,14 @@ public class CardDeck {
 
         suits = Suit.values().length;
         faces = Face.values().length;
-        length = (suits - 1) * faces + 2;
+        length = (suits - 1) * faces ;
         CardBase cards[]=new CardBase[length];
         for (int i = 0; i < suits - 1; i++) {
             Suit suit = Suit.valueOf(i);
-            for (int k = 0; k < faces; k++) {
-                Face face = Face.valueOf(k);
+            for (int k = 0; k <faces; k++) {
+                if(k==0&&(i==0||i==3))
+                    continue;
+                Face face = Face.valueOf(k+6);
                 cards[k + i * faces] = new Card(suit, face);
             }
         }

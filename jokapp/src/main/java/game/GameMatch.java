@@ -1,17 +1,20 @@
 package game;
 
+import android.util.Log;
+
 import game.cards.CardBase;
+import game.messages.RoundHistory;
 
 /**
  * Created by Giorgi on 5/12/2015.
  */
 public class GameMatch implements Connector.ConnectorCallback {
-    private Player[] mPlayers;
+    public Player[] mPlayers;
     private Round mCurrentRound;
     private Round mTempRound;
     private static boolean mIsMyTurn = true;
-    public static String mMyId="00001";
-
+    public static String mMyId = "00001";
+    public RoundHistory mHistory;
     //GameHistory
 
     UIConnectorPresenter mUIpresenter;
@@ -53,24 +56,41 @@ public class GameMatch implements Connector.ConnectorCallback {
     }
 
 
-    public boolean makeMove(Object object, int type) {
+    public boolean makeMove(Object object, int type)throws Exception {//maybe better to use round status instead of type here. if say then say if play then play
+
         mTempRound = mCurrentRound;
+        mMyId=mCurrentRound.getCurrentPlayer().getPlayer().getId();
+        boolean result = false;
+
         if (type == 0) {//say
-            return mTempRound.say((int) object);
+            result = mTempRound.say((int) object);
         } else {
-            return mTempRound.play((CardBase) object);
+            result = mTempRound.play((CardBase) object);
         }
+
+
+        return result;
+
     }
 
     public void commit() {
-        mCurrentRound = mTempRound;
-        mTempRound = null;
-        mOutput.updateMatch(mCurrentRound);
+        try {
+            mCurrentRound = mTempRound;
+            mTempRound = null;
+            mOutput.updateMatch(mCurrentRound);
+            mMyId = mCurrentRound.getCurrentPlayer().getPlayer().getId();
+            mUIpresenter.getUIConnector().onMatchUpdated(mCurrentRound, 0);
+        } catch (Exception ex) {
+            Log.e("MatchMakeMove", ex.toString());
+        }
     }
 
 
     public boolean startMatch() {
-        return false;
+        mCurrentRound = new Round(mPlayers);
+        mCurrentRound.startRound();
+        mUIpresenter.getUIConnector().onMatchUpdated(mCurrentRound, null);
+        return true;
     }
 
     public boolean joinPlayer(Player player) {
